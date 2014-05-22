@@ -23,12 +23,13 @@ local.properties
 proguard/
 
 # Android Studio
-#.idea
-.idea/workspace.xml
+.idea
+#.idea/workspace.xml
 #.idea/gradle.xml -  Not 100% sure if this should be in repo but now we do it!
-.idea/tasks.xml
-.idea/datasources.xml
-.idea/dataSources.ids
-.idea/libraries
+#.idea/tasks.xml
+#.idea/datasources.xml
+#.idea/dataSources.ids
+#.idea/libraries
+*.iml
 .gradle
 build/
