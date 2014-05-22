@@ -23,7 +23,12 @@ local.properties
 proguard/
 
 # Android Studio
-.idea
-#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+#.idea
+.idea/workspace.xml
+#.idea/gradle.xml -  Not 100% sure if this should be in repo but now we do it!
+.idea/tasks.xml
+.idea/datasources.xml
+.idea/dataSources.ids
+.idea/libraries
 .gradle
 build/
