@@ -2,8 +2,10 @@
 <resources>
 
     <string name="app_name">Sekoia</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="relativesTextView">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_relatives">RelativesActivity</string>
+    <string name="startButton">Start</string>
+    <string name="title_activity_relatives_menu">RelativesMenuActivity</string>
 
 </resources>
