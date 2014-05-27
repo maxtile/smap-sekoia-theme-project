@@ -20,7 +20,6 @@
 
         <activity
             android:name="com.example.sekoia.app.PicturesActivity"
-            android:configChanges="orientation"
             android:label="@string/title_activity_pictures" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

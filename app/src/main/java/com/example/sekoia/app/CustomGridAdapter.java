@@ -45,7 +45,7 @@ import java.util.List;
             ImageView imageView = new ImageView(mContext);
             imageView.setImageBitmap(bitmaps.get(position));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
+            imageView.setLayoutParams(new GridView.LayoutParams(400, 400));
             return imageView;
         }
 
