@@ -14,6 +14,7 @@ import android.widget.Button;
 public class PicturesFragment extends Fragment {
     private OnPicturesFragmentInteraction aCallback;
     private Button takePicButton;
+    private Button choosePicButton;
 
     public PicturesFragment() {
     }
@@ -33,6 +34,13 @@ public class PicturesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pictures, container, false);
+        choosePicButton = (Button)rootView.findViewById(R.id.choosePictureButton);
+        choosePicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                aCallback.onChoosePictureButtonClicked();
+            }
+        });
         takePicButton = (Button)rootView.findViewById(R.id.takePictureButton);
         takePicButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +53,6 @@ public class PicturesFragment extends Fragment {
 
     public interface OnPicturesFragmentInteraction{
         public void onTakePictureButtonClicked();
+        public void onChoosePictureButtonClicked();
     }
 }
