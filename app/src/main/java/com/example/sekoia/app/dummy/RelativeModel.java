@@ -5,27 +5,21 @@ package com.example.sekoia.app.dummy;
  */
 public class RelativeModel {
 
-    //int id;
-    //String picPath;
+    int id;
+    int picPath;
     String firstName;
     String lastName;
-    //String room;
-    //String homeName;
+    String room;
+    String homeName;
 
-    /*public RelativeModel(int id, String picPath, String firstName, String lastName, String room, String homeName){
-        this.id = id;
-        this.picPath = picPath;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.room = room;
-        this.homeName = homeName;
-    }*/
-
-    public RelativeModel(String firstName, String lastName){
+    public RelativeModel(int id, String firstName, String lastName, int picPath,String homeName, String room){
         super();
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-
+        this.picPath = picPath;
+        this.homeName = homeName;
+        this.room = room;
     }
 
 
@@ -35,12 +29,19 @@ public class RelativeModel {
     public String getLastName(){
         return lastName;
     }
-
-
-
-    public String getTitle(){
-        return firstName + " " + lastName;
+    public int getPicPath(){
+        return picPath;
     }
+    public String getHomeName(){
+        return homeName;
+    }
+    public String getRoom(){
+        return room;
+    }
+    public int getId(){
+        return id;
+    }
+
 
 
 }

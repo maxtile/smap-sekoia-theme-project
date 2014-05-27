@@ -1,13 +1,7 @@
 package com.example.sekoia.app;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -41,8 +35,8 @@ public class RelativesChooseActivity extends Activity {
     private List<RelativeModel> model = new ArrayList<RelativeModel>();
 
     private void populateRelativesList(){
-        model.add(new RelativeModel( "Kalle", "Hansen"));
-        model.add(new RelativeModel("Nancy", "Bergren"));
+        model.add(new RelativeModel(111, "Kalle", "Hansen",R.drawable.kalle, "Grenen", "Lejlighed 3"));
+        model.add(new RelativeModel(222, "Nancy", "Berggren", R.drawable.nancy, "Kvisten", "Lejlighed 14"));
     }
 
     private void populatListview(){
@@ -63,8 +57,7 @@ public class RelativesChooseActivity extends Activity {
                 RelativeModel relativemodel = model.get(position);
 
                 // toast
-                String message = "You clicked position " + position
-                        + " Fornavn" + relativemodel.getFirstName();
+                String message = "You chose: " + relativemodel.getFirstName()+" ID: "+relativemodel.getId();
                 Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
 
             }
@@ -85,24 +78,24 @@ public class RelativesChooseActivity extends Activity {
                 itemView = getLayoutInflater().inflate(R.layout.relatives_items, parent, false);
             }
 
-            // Find the car to work with.
+            // Find the relative to work with
             RelativeModel relativeModel = model.get(position);
 
-            // Fill the view
-            //ImageView imageView = (ImageView)itemView.findViewById(R.id.item_icon);
-            //imageView.setImageResource(relativeModel.getIconID());
+            // Image
+            ImageView imageView = (ImageView)itemView.findViewById(R.id.item_icon);
+            imageView.setImageResource(relativeModel.getPicPath());
 
-            // Make:
-            TextView makeText = (TextView) itemView.findViewById(R.id.item_txtMake);
-            makeText.setText(relativeModel.getFirstName());
+            // Full Name:
+            TextView nameText = (TextView) itemView.findViewById(R.id.item_txtName);
+            nameText.setText(relativeModel.getFirstName()+" "+ relativeModel.getLastName());
 
-            // Year:
-            TextView yearText = (TextView) itemView.findViewById(R.id.item_txtYear);
-            yearText.setText("" + relativeModel.getLastName());
+            // Nursery home:
+            TextView homeText = (TextView) itemView.findViewById(R.id.item_txtHome);
+            homeText.setText("" + relativeModel.getHomeName());
 
-            // Condition:
-            //TextView condionText = (TextView) itemView.findViewById(R.id.item_txtCondition);
-            //condionText.setText(relativeModel.getCondition());
+            // Apartment:
+            TextView apartmentText = (TextView) itemView.findViewById(R.id.item_txtApartment);
+            apartmentText.setText(relativeModel.getRoom());
 
             return itemView;
         }

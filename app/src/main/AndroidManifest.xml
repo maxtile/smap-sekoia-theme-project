@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sekoia.app" >
 
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -16,8 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.sekoia.app.RelativesActivity"
+            android:name=".RelativesChooseActivity"
             android:label="@string/title_activity_relatives" >
+        </activity>
+        <activity
+            android:name="com.example.sekoia.app.RelativesMenuActivity"
+            android:label="@string/title_activity_relatives_menu" >
         </activity>
     </application>
 
