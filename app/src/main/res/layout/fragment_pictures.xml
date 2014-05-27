@@ -6,16 +6,27 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.sekoia.app.PicturesActivity$PlaceholderFragment">
+    tools:context="com.example.sekoia.app.PicturesActivity$PlaceholderFragment"
+    android:background="#ffffff">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/TakePictureButtonText"
-        android:id="@+id/takePictureButton"
+        android:text="@string/AddPictureButtonText"
+        android:id="@+id/AddPictureButton"
+        android:layout_alignTop="@+id/DeletePictureButton"
+        android:layout_toLeftOf="@+id/DeletePictureButton"
+        android:layout_marginRight="53dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DeletePictureButton"
+        android:id="@+id/DeletePictureButton"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="42dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
