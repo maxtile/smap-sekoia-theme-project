@@ -12,22 +12,35 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PicturesActivity extends FragmentActivity
         implements PicturesFragment.OnPicturesFragmentInteraction{
 
+    static final String SAVE_CURRENT_PHOTO_PATH = "saveCuPhPa";
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_CHOOSE_PICTURE = 2;
     String mCurrentPhotoPath;
 
+    //public static List<ImageView> ImageList = new ArrayList<ImageView>();
+    public static CustomGridAdapter adapter;
+    public static List<Bitmap> Bitmaps = new ArrayList<Bitmap>();
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bitmap bitmapImage = null;
+
+        if(mCurrentPhotoPath == null){
+            Toast.makeText(getApplicationContext(), "Error while processing picture", Toast.LENGTH_SHORT);
+            return;
+        }
 
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             //1. Add the new picture to gallery
@@ -59,6 +72,8 @@ public class PicturesActivity extends FragmentActivity
         //Todo: Sync with server in some background task.
         //Todo: When synced:
         //Todo: Add bitmap to some sort of list, and add the photoPath to the Realative...
+        Bitmaps.add(bitmapImage);
+        adapter.notifyDataSetChanged();
         //Todo: After adding to some bitmap list, the fragment needs to be refreshed.
     }
 
@@ -71,6 +86,15 @@ public class PicturesActivity extends FragmentActivity
                     .add(R.id.container, new PicturesFragment())
                     .commit();
         }
+        else{
+            mCurrentPhotoPath = savedInstanceState.getString(SAVE_CURRENT_PHOTO_PATH, null);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString(SAVE_CURRENT_PHOTO_PATH, mCurrentPhotoPath);
+        super.onSaveInstanceState(outState);
     }
 
 

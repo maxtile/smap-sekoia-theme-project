@@ -5,7 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_pictures">PicturesActivity</string>
-    <string name="AddPictureButtonText">Tilføj billeder</string>
-    <string name="DeletePictureButton">Slet</string>
-    <string name="Pictures">Billeder</string>
+    <string name="AddPictureButtonText">Add picture</string>
+    <string name="DeletePictureButton">Delete</string>
+    <string name="Pictures">Pictures</string>
+    <string name="fromCamera">Use Camera</string>
+    <string name="fromGallery">Choose from gallery</string>
+    <string name="dialogChoose">Choose</string>
 </resources>
