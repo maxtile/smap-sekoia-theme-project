@@ -17,6 +17,7 @@
         android:layout_alignTop="@+id/DeletePictureButton"
         android:layout_toLeftOf="@+id/DeletePictureButton"
         android:layout_marginLeft="50dp"
+        android:layout_marginRight="110dp"
         android:background="#37b810"
         />
 
@@ -46,17 +47,5 @@
         android:numColumns="auto_fit"
         android:smoothScrollbar="true"
         />
-
-    <!--<ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageListView"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/DeletePictureButton"
-        android:layout_alignEnd="@+id/DeletePictureButton"
-        android:layout_marginTop="62dp"
-        android:layout_above="@+id/AddPictureButton" />-->
-
-
 
 </RelativeLayout>
