@@ -1,6 +1,7 @@
 package com.example.sekoia.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.sekoia.app.dummy.RelativeModel;
-
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 public class RelativesChooseActivity extends Activity {
 
     // Message used for intent
-    // public final static String MESSAGE = "com.example.sekoia.app.MESSAGE";
+    public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE";
+    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,22 @@ public class RelativesChooseActivity extends Activity {
                 String message = "You chose: " + relativemodel.getFirstName()+" ID: "+relativemodel.getId();
                 Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
 
+
+                // fire intent to start new activity
+                //startMenuActivity();
+
+
+
             }
         });
 
+    }
+
+    private void startMenuActivity(RelativeModel relativeModel){
+        Intent intent = new Intent(this, RelativesMenuActivity.class);
+        intent.putExtra(MESSAGE_ID,""+relativeModel.getId());
+        intent.putExtra(MESSAGE_FULLNAME,relativeModel.getFirstName()+" "+relativeModel.getLastName());
+        startActivity(intent);
     }
 
     public class MyListAdapter extends ArrayAdapter<RelativeModel>{
