@@ -4,4 +4,10 @@
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
     </style>
+    <style name="ActionBar" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="actionBarStyle">@style/ActionBar</item>
+        <item name="android:displayOptions">showTitle</item>
+        <item name="displayOptions">showTitle</item>
+    </style>
 </resources>
