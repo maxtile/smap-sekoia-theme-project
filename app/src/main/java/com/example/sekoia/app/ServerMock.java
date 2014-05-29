@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ServerMock extends Activity implements IServerInteraction {
     //As this is a Mock the Server URL is set to Local Media storage
-    private String URL = getExternalFilesDir(null).getAbsolutePath();
+    private String URL = ""; //Todo - exteralFilesDir must be inserted i think.
 
 
     @Override
@@ -44,7 +44,19 @@ public class ServerMock extends Activity implements IServerInteraction {
 
     @Override
     public int UploadImage(File imageFile) {
-        //Todo: Uploading image will be the same as saving local in tis application.
-        return SUCCESS;
+        //StartFakeUploadService here.
+        return 0;
     }
+
+    //Todo: Uploading image will be the same as saving local in tis application.
+   /* Log.d(this.toString(), "Uploading: " + imageFile.getAbsolutePath() + "");
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            Log.d(this.toString(), "sleep....");
+            SystemClock.sleep(3000);
+            Log.d(this.toString(), "awaaaaake...");
+        }
+    }).start();
+    return SUCCESS;*/
 }

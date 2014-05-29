@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.example.sekoia.app.Interfaces.IServerInteraction;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,33 +27,41 @@ import java.util.List;
 public class PicturesActivity extends FragmentActivity
         implements PicturesFragment.OnPicturesFragmentInteraction{
 
+    static final int THUMBNAIL_SIZE = 400;
     static final String SAVE_CURRENT_PHOTO_PATH = "saveCuPhPa";
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_CHOOSE_PICTURE = 2;
     String mCurrentPhotoPath;
+    String mCurrentPhotoFileName;
+    IServerInteraction serverInteraction;
 
-    //public static List<ImageView> ImageList = new ArrayList<ImageView>();
     public static CustomGridAdapter adapter;
     public static List<Bitmap> Bitmaps = new ArrayList<Bitmap>();
+
+    public PicturesActivity(IServerInteraction serverInteraction){
+        this.serverInteraction = serverInteraction;
+    }
+
+    public PicturesActivity(){
+        //Default constructor
+        serverInteraction = new ServerMock();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bitmap bitmapImage = null;
 
-        if(mCurrentPhotoPath == null){
-            Toast.makeText(getApplicationContext(), "Error while processing picture", Toast.LENGTH_SHORT);
-            return;
-        }
-
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            //1. Add the new picture to gallery
-            galleryAddPic();
+            if(mCurrentPhotoPath == null){
+                Toast.makeText(getApplicationContext(), getString(R.string.PictureProcessError),
+                        Toast.LENGTH_LONG);
+                return;
+            }
 
-            //2. Create Bitmap for Application
             try {
-                 bitmapImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(),
-                         Uri.parse(mCurrentPhotoPath));
-            } catch (IOException e) {
+                 bitmapImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(
+                         Uri.parse(mCurrentPhotoPath).getPath()), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -67,14 +78,15 @@ public class PicturesActivity extends FragmentActivity
             mCurrentPhotoPath = cursor.getString(columnIndex);
             cursor.close();
 
-            bitmapImage = BitmapFactory.decodeFile(mCurrentPhotoPath);
+            bitmapImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(mCurrentPhotoPath)
+                    , THUMBNAIL_SIZE, THUMBNAIL_SIZE);
         }
-        //Todo: Sync with server in some background task.
-        //Todo: When synced:
-        //Todo: Add bitmap to some sort of list, and add the photoPath to the Realative...
+
+        //Todo: add the photoPath to the Realative on database
+        //Todo: add Background task where we upload real picture file.
+        serverInteraction.UploadImage(new File(mCurrentPhotoPath));
         Bitmaps.add(bitmapImage);
         adapter.notifyDataSetChanged();
-        //Todo: After adding to some bitmap list, the fragment needs to be refreshed.
     }
 
     @Override
@@ -173,6 +185,8 @@ public class PicturesActivity extends FragmentActivity
                 storageDir      /* directory */
         );
 
+        // Save name to for storage in database on current Relative.
+        mCurrentPhotoPath = image.getName();
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;

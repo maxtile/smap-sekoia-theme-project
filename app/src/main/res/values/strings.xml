@@ -9,4 +9,5 @@
     <string name="fromCamera">Brug kameraet</string>
     <string name="fromGallery">Vælg billede fra galleri</string>
     <string name="dialogChoose">Vælg</string>
+    <string name="PictureProcessError">Error while processing picture</string>
 </resources>
