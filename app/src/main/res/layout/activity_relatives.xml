@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FFFFFF"
     tools:context="com.example.sekoia.app.RelativesChooseActivity">
 
     <TextView
@@ -21,7 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtMake"
-        android:layout_below="@+id/txtMake" >
+        android:layout_below="@+id/txtMake"
+        android:layout_margin="15dp"
+        >
+
     </ListView>
 
 

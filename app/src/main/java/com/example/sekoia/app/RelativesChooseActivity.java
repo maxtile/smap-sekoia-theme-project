@@ -83,14 +83,7 @@ public class RelativesChooseActivity extends Activity {
 
     }
 
-    /*
-    private void startMenuActivity(RelativeModel relativeModel){
-        Intent intent = new Intent(this, RelativesMenuActivity.class);
-        intent.putExtra(MESSAGE_ID,""+relativeModel.getId());
-        intent.putExtra(MESSAGE_FULLNAME,relativeModel.getFirstName()+" "+relativeModel.getLastName());
-        startActivity(intent);
-    }
-    */
+
 
     public class MyListAdapter extends ArrayAdapter<RelativeModel>{
         public MyListAdapter(){
