@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sekoia</string>
-    <string name="action_settings">Indstillinger</string>
+    <string name="action_settings">settings</string>
     <string name="title_activity_pictures">PicturesActivity</string>
-    <string name="AddPictureButtonText">Tilføj</string>
-    <string name="DeletePictureButton">Slet</string>
-    <string name="Pictures">Billeder</string>
-    <string name="fromCamera">Brug kameraet</string>
-    <string name="fromGallery">Vælg billede fra galleri</string>
-    <string name="dialogChoose">Vælg</string>
     <string name="PictureProcessError">Error while processing picture</string>
+    <string name="AddPictureButtonText">Add</string>
+    <string name="DeletePictureButton">Delete</string>
+    <string name="Pictures">Pictures</string>
+    <string name="fromCamera">Use camera</string>
+    <string name="fromGallery">Choose from gallery</string>
+    <string name="dialogChoose">Choose</string>
 </resources>
