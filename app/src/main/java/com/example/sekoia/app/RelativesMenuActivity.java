@@ -6,6 +6,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 public class RelativesMenuActivity extends Activity {
@@ -21,16 +24,74 @@ public class RelativesMenuActivity extends Activity {
 
         // set view:
 
-        /*
-        Intent intent = getIntent();
+
+       /* Intent intent = getIntent();
         if(intent != null){
-            String fullName = intent.getExtras().getString("MESSAGE_FULLNAME");
+            //String fullName = intent.getExtras().getString("MESSAGE_FULLNAME");
             int id = Integer.parseInt(intent.getExtras().getString("MESSAGE_FULLNAME"));
+            String message = ""+id;
+            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+
         }
         */
 
 
+
+
+        RelativeLayout rlayoutPictures = (RelativeLayout)findViewById(R.id.relativeLayoutPictures);
+        rlayoutPictures.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+                //TOAST
+                String message = getString(R.string.menuActivity_message_pictures);
+                Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                //Start pictures activity
+                //Intent intent = new Intent(this, RelativesMenuActivity.class);
+                //startActivity(intent);
+
+
+            }
+        });
+
+        RelativeLayout rlayoutCalender = (RelativeLayout)findViewById(R.id.relativeLayoutCalender);
+        rlayoutCalender.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+                //Start activity - to be implemented
+                String message = getString(R.string.menuActivity_message_calender);
+                Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        RelativeLayout rlayoutGames = (RelativeLayout)findViewById(R.id.relativeLayoutGames);
+        rlayoutGames.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+                //Start activity - to be implemented
+                String message = getString(R.string.menuActivity_message_games);
+                Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        //
+
+
+
+
     }
+
+
+    // Methods for button-click
+    public void pictureClicked(){
+        String message = "You chose Picture!!";
+        Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+
 
 
     @Override

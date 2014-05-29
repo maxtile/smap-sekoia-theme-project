@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtMake"
         android:layout_below="@+id/txtMake"
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
+        android:dividerHeight="20dp"
         >
 
     </ListView>

@@ -1,8 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutMenu1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="#FFFFFF"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -16,6 +18,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayoutMenu2"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -36,41 +39,46 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-
+<!--- Layout for choose pictures  -->
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/relativeLayoutPictures"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="1dp"
             android:orientation="horizontal"
-            android:background="#C5E0B4">
+            android:background="#C5E0B4"
+            android:clickable="true"
+
+            >
 
             <ImageView
-                android:id="@+id/item_icon"
+                android:id="@+id/item_imageView_pictures"
                 android:layout_width="70dp"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
                 android:maxHeight="100dp"
-                android:maxWidth="80dp"
-                android:src="@drawable/ic_launcher"
-                android:layout_marginTop="44dp"
-                android:layout_marginLeft="40dp"
+                android:maxWidth="70dp"
+                android:src="@drawable/icon_pictures"
+                android:layout_margin="5dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:id="@+id/item_txtApartment"
+                android:id="@+id/txt_menu_pictures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/item_icon"
-                android:layout_alignParentRight="true"
-                android:text="Apartment"
-                android:layout_alignLeft="@+id/item_txtName"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_alignBottom="@+id/item_imageView_pictures"
+                android:layout_alignLeft="@+id/item_imageView_pictures"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="#6C6C6C"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/textView_menu_pictures" />
         </RelativeLayout>
 
         <View
@@ -78,47 +86,92 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <!--- Layout for choose calender  -->
+        <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/relativeLayoutCalender"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="1dp"
-            android:orientation="vertical"
-            android:background="#C5E0B4">
-            <Button
+            android:orientation="horizontal"
+            android:background="#C5E0B4"
+            android:clickable="true"
+            >
+
+            <ImageView
+                android:id="@+id/item_imageView_calender"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="100dp"
+                android:maxWidth="70dp"
+                android:src="@drawable/icon_calender"
+                android:layout_margin="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/txt_menu_calender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_games"
-                android:text="@string/Button_menu_games"
+                android:layout_alignBottom="@+id/item_imageView_calender"
+                android:layout_alignLeft="@+id/item_imageView_calender"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="#6C6C6C"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:onClick="onButtonGames"
-                android:gravity="center_horizontal"/>
-        </LinearLayout>
+                android:text="@string/textView_menu_calender"
+                 />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <!--- Layout for choose games  -->
+        <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/relativeLayoutGames"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="1dp"
-            android:orientation="vertical"
-            android:background="#C5E0B4">
+            android:orientation="horizontal"
+            android:background="#C5E0B4"
+            android:clickable="true"
 
-            <Button
+            >
+
+            <ImageView
+                android:id="@+id/item_imageView_games"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="100dp"
+                android:maxWidth="70dp"
+                android:src="@drawable/icon_games"
+                android:layout_margin="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/txt_menu_games"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_calender"
-                android:text="@string/Button_menu_calender"
+                android:layout_alignBottom="@+id/item_imageView_games"
+                android:layout_alignLeft="@+id/item_imageView_games"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="#6C6C6C"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:onClick="onButtonCalender"
-                android:gravity="center"/>
-        </LinearLayout>
+                android:text="@string/textView_menu_games" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
