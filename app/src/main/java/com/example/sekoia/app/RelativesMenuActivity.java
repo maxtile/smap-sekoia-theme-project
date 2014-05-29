@@ -1,5 +1,6 @@
 package com.example.sekoia.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class RelativesMenuActivity extends ActionBarActivity {
+public class RelativesMenuActivity extends Activity {
 
 
     public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE";
@@ -20,12 +21,13 @@ public class RelativesMenuActivity extends ActionBarActivity {
 
         // set view:
 
+        /*
         Intent intent = getIntent();
         if(intent != null){
             String fullName = intent.getExtras().getString("MESSAGE_FULLNAME");
             int id = Integer.parseInt(intent.getExtras().getString("MESSAGE_FULLNAME"));
         }
-
+        */
 
 
     }

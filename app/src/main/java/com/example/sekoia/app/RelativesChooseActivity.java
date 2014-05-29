@@ -58,13 +58,8 @@ public class RelativesChooseActivity extends Activity {
 
                 RelativeModel relativemodel = model.get(position);
 
-                // toast
-                String message = "You chose: " + relativemodel.getFirstName()+" ID: "+relativemodel.getId();
-                Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
-
-
                 // fire intent to start new activity
-                //startMenuActivity();
+                startMenuActivity(relativemodel);
 
 
 
@@ -73,12 +68,29 @@ public class RelativesChooseActivity extends Activity {
 
     }
 
+
+    private void startMenuActivity(RelativeModel relativeModel){
+
+        //toast
+        String message = "You chose: " + relativeModel.getFirstName()+" ID: "+relativeModel.getId();
+        Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
+
+        //Intent to start the RelativesMenuActivity
+        Intent intent = new Intent(this, RelativesMenuActivity.class);
+        //intent.putExtra(MESSAGE_ID,""+relativeModel.getId());
+        //intent.putExtra(MESSAGE_FULLNAME,relativeModel.getFirstName()+" "+relativeModel.getLastName());
+        startActivity(intent);
+
+    }
+
+    /*
     private void startMenuActivity(RelativeModel relativeModel){
         Intent intent = new Intent(this, RelativesMenuActivity.class);
         intent.putExtra(MESSAGE_ID,""+relativeModel.getId());
         intent.putExtra(MESSAGE_FULLNAME,relativeModel.getFirstName()+" "+relativeModel.getLastName());
         startActivity(intent);
     }
+    */
 
     public class MyListAdapter extends ArrayAdapter<RelativeModel>{
         public MyListAdapter(){
