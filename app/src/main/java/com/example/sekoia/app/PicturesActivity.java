@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -59,8 +60,10 @@ public class PicturesActivity extends FragmentActivity
             }
 
             try {
-                 bitmapImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(
-                         Uri.parse(mCurrentPhotoPath).getPath()), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+                mCurrentPhotoPath = Uri.parse(mCurrentPhotoPath).getPath();
+                 bitmapImage = ThumbnailUtils.extractThumbnail(
+                         BitmapFactory.decodeFile(mCurrentPhotoPath),
+                         THUMBNAIL_SIZE, THUMBNAIL_SIZE);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -78,13 +81,14 @@ public class PicturesActivity extends FragmentActivity
             mCurrentPhotoPath = cursor.getString(columnIndex);
             cursor.close();
 
-            bitmapImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(mCurrentPhotoPath)
+            bitmapImage = ThumbnailUtils.extractThumbnail(
+                    BitmapFactory.decodeFile(mCurrentPhotoPath)
                     , THUMBNAIL_SIZE, THUMBNAIL_SIZE);
         }
 
         //Todo: add the photoPath to the Realative on database
         //Todo: add Background task where we upload real picture file.
-        serverInteraction.UploadImage(new File(mCurrentPhotoPath));
+        serverInteraction.UploadImage(mCurrentPhotoPath);
         Bitmaps.add(bitmapImage);
         adapter.notifyDataSetChanged();
     }
@@ -99,7 +103,9 @@ public class PicturesActivity extends FragmentActivity
                     .commit();
         }
         else{
+            if (Build.VERSION.SDK_INT >= 11){
             mCurrentPhotoPath = savedInstanceState.getString(SAVE_CURRENT_PHOTO_PATH, null);
+            }
         }
     }
 

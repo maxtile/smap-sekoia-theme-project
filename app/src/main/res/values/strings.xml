@@ -10,4 +10,5 @@
     <string name="fromCamera">Use camera</string>
     <string name="fromGallery">Choose from gallery</string>
     <string name="dialogChoose">Choose</string>
+    <string name="pictureUpload">Uploading picture...</string>
 </resources>
