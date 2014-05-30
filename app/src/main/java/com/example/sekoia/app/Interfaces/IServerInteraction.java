@@ -13,6 +13,6 @@ public interface IServerInteraction {
     public static final int FAILURE = 0;
 
     public List<Bitmap> GetPictureThumbnails(List<String> filenames);
-    public int UploadImage(File imageFile);
+    public int UploadImage(String filePath);
 
 }

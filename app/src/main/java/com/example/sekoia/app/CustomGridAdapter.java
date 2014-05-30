@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -45,7 +44,7 @@ import java.util.List;
             ImageView imageView = new ImageView(mContext);
             imageView.setImageBitmap(bitmaps.get(position));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setLayoutParams(new GridView.LayoutParams(400, 400));
+            //imageView.setLayoutParams(new GridView.LayoutParams(400, 400));
             return imageView;
         }
 
