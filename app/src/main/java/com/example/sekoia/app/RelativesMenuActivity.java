@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,43 +14,59 @@ import android.widget.Toast;
 
 public class RelativesMenuActivity extends Activity {
 
+    // KEYS used for intent
+    public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE_ID";
+    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE_FULLNAME";
 
-    public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE";
-    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE";
+    // logcat tag:
+    public static final String TAG = "SEKOIA_APP_RelativesMenuActivity";
+
+    String relativeFullName = "";
+    String relativeId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatives_menu);
 
-        // set view:
+        // get data from intent:
 
-
-       /* Intent intent = getIntent();
+        Intent intent = getIntent();
         if(intent != null){
-            //String fullName = intent.getExtras().getString("MESSAGE_FULLNAME");
-            int id = Integer.parseInt(intent.getExtras().getString("MESSAGE_FULLNAME"));
-            String message = ""+id;
+            String relativeFullName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_FULLNAME);
+            String relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
+
+            Log.d(TAG, "Intent recieved: NAME:"+relativeFullName+" ID: "+relativeId+"");
+
+            //TODO when merged: comment out this toast:
+            String message = "From previous activity: "+ relativeFullName+", id: "+relativeId;
             Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
-
         }
-        */
 
+
+
+        //------- onClickListeners-------//
 
 
 
         RelativeLayout rlayoutPictures = (RelativeLayout)findViewById(R.id.relativeLayoutPictures);
         rlayoutPictures.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                Log.d(TAG, "onClick_Pictures");
 
-                //TOAST
+                //TODO - When merged: Toast has to be commented out
                 String message = getString(R.string.menuActivity_message_pictures);
                 Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                //Start pictures activity
-                //Intent intent = new Intent(this, RelativesMenuActivity.class);
-                //startActivity(intent);
+                // TODO - When merged:
+                // Start pictures activity
 
+                /*
+                Intent intent = new Intent(this, RelativesMenuActivity.class);
+                intent.putExtra(MESSAGE_ID, relativeFullName);
+                intent.putExtra(MESSAGE_FULLNAME, relativeId);
+                startActivity(intent);
+                */
 
             }
         });
@@ -57,6 +74,7 @@ public class RelativesMenuActivity extends Activity {
         RelativeLayout rlayoutCalender = (RelativeLayout)findViewById(R.id.relativeLayoutCalender);
         rlayoutCalender.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                Log.d(TAG, "onClick_Calender");
 
                 //Start activity - to be implemented
                 String message = getString(R.string.menuActivity_message_calender);
@@ -68,6 +86,7 @@ public class RelativesMenuActivity extends Activity {
         RelativeLayout rlayoutGames = (RelativeLayout)findViewById(R.id.relativeLayoutGames);
         rlayoutGames.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                Log.d(TAG, "onClick_Games");
 
                 //Start activity - to be implemented
                 String message = getString(R.string.menuActivity_message_games);
@@ -85,14 +104,7 @@ public class RelativesMenuActivity extends Activity {
     }
 
 
-    // Methods for button-click
-    public void pictureClicked(){
-        String message = "You chose Picture!!";
-        Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
-    }
-
-
-
+    //TODO - delete the following unused methods:
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
