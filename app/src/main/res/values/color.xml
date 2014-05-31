@@ -3,10 +3,10 @@
 
     <!-- Colours used in this Sekoia - app: -->
 
-    <color name="Background">#ffffff</color>
-    <color name="layoutButtonsDefault">#C5E0B4</color>
-    <color name="layoutButtonsSelected">#ff99b28c</color>
-    <color name="fontColor">#6C6C6C</color>
+    <color name="Background">#ffffff</color>                <!-- org:   ffffff -->
+    <color name="layoutButtonsDefault">#C5E0B4</color>      <!-- org:   C5E0B4 -->
+    <color name="layoutButtonsSelected">#ff99b28c</color>   <!-- org:   ff99b28c -->
+    <color name="fontColor">#6C6C6C</color>                 <!-- org:   6C6C6C -->
 
 
 
