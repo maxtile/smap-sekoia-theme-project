@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,34 +18,42 @@ public class RelativesMenuActivity extends Activity {
 
     // KEYS used for intent
     public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE_ID";
-    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE_FULLNAME";
+    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE_NAME";
+    public final static String MESSAGE_PIC = "com.example.sekoia.app.MESSAGE_PIC";
 
     // logcat tag:
     public static final String TAG = "SEKOIA_APP_RelativesMenuActivity";
 
-    String relativeFullName = "";
-    String relativeId = "";
+    String relativeName = "";
+    String relativeId = "";   // used for intent to start pictureActivity
+    int picPath = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatives_menu);
+        Log.d(TAG, "onCreate");
 
         // get data from intent:
 
         Intent intent = getIntent();
         if(intent != null){
-            String relativeFullName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_FULLNAME);
-            String relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
+            relativeName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_NAME);
+            relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
+            picPath = intent.getIntExtra(RelativesChooseActivity.MESSAGE_PIC, 0);
 
-            Log.d(TAG, "Intent recieved: NAME:"+relativeFullName+" ID: "+relativeId+"");
+            Log.d(TAG, "Intent recieved: NAME:"+relativeName+" ID: "+relativeId+"");
 
             //TODO when merged: comment out this toast:
-            String message = "From previous activity: "+ relativeFullName+", id: "+relativeId;
+            String message = "From previous activity: "+ relativeName+", id: "+relativeId;
             Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
         }
 
-
+        // populate view with name of relative and small image:
+        TextView textViev = (TextView) findViewById(R.id.txt_menu_relative);
+        textViev.setText(relativeName);
+        ImageView imageView = (ImageView)findViewById(R.id.item_imageView_relative);
+        imageView.setImageResource(picPath);
 
         //------- onClickListeners-------//
 
@@ -63,8 +73,8 @@ public class RelativesMenuActivity extends Activity {
 
                 /*
                 Intent intent = new Intent(this, RelativesMenuActivity.class);
-                intent.putExtra(MESSAGE_ID, relativeFullName);
-                intent.putExtra(MESSAGE_FULLNAME, relativeId);
+                intent.putExtra(MESSAGE_NAME, relativeName);
+                intent.putExtra( MESSAGE_ID, relativeId);
                 startActivity(intent);
                 */
 

@@ -23,7 +23,9 @@ public class RelativesChooseActivity extends Activity {
 
     // KEYS used for intent
     public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE_ID";
-    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE_FULLNAME";
+    public final static String MESSAGE_NAME = "com.example.sekoia.app.MESSAGE_NAME";
+    public final static String MESSAGE_PIC = "com.example.sekoia.app.MESSAGE_PIC";
+
 
     // Logcat TAG
     public static final String TAG = "SEKOIA_APP_RelativesChooseActivity";
@@ -84,7 +86,8 @@ public class RelativesChooseActivity extends Activity {
         //Intent to start the RelativesMenuActivity
         Intent intent = new Intent(this, RelativesMenuActivity.class);
         intent.putExtra(MESSAGE_ID,""+relativeModel.getId());
-        intent.putExtra(MESSAGE_FULLNAME,relativeModel.getFirstName()+" "+relativeModel.getLastName());
+        intent.putExtra(MESSAGE_NAME,relativeModel.getFirstName());
+        intent.putExtra(MESSAGE_PIC,relativeModel.getPicPath());
         startActivity(intent);
 
         Log.d(TAG, "Intent send: start activity: RelativesMenuActivity");
