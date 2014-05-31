@@ -37,7 +37,7 @@
         android:text="@string/name"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="110dp"
-        android:textColor="#6C6C6C"
+        android:textColor="@color/fontColor"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
@@ -50,7 +50,7 @@
         android:layout_alignParentRight="true"
         android:text="Apartment"
         android:layout_alignLeft="@+id/item_txtName"
-        android:textColor="#6C6C6C"
+        android:textColor="@color/fontColor"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:layout_alignBottom="@+id/item_icon"
         android:layout_alignLeft="@+id/item_txtName"
         android:layout_marginBottom="15dp"
-        android:textColor="#6C6C6C"
+        android:textColor="@color/fontColor"
         android:text="Nursering home" />
 
 
