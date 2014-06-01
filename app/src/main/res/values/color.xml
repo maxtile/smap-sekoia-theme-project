@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Colours used in this Sekoia - app: -->
+
+    <color name="Background">#ffffff</color>                <!-- org:   ffffff -->
+    <color name="layoutButtonsDefault">#C5E0B4</color>      <!-- org:   C5E0B4 -->
+    <color name="layoutButtonsSelected">#ff99b28c</color>   <!-- org:   ff99b28c -->
+    <color name="fontColor">#6C6C6C</color>                 <!-- org:   6C6C6C -->
+
+
+
+    <!-- Colours Not - used in this Sekoia - app:  -->
+
+
+    <color name="orange">#ff5500</color>
+    <color name="transparent">#00000000</color>
+    <color name="date_color">#999999</color>
+    <color name="black">#000000</color>
+    <color name="gray">#999999</color>
+    <color name="blue">#0066cc</color>
+    <color name="gold">#e6b121</color>
+    <color name="blueback">#99FFFF</color>
+    <color name="articlecolor">#3399FF</color>
+    <color name="article_title">#3399FF</color>
+    <color name="cachecolor">#8ad0e8</color>
+</resources>

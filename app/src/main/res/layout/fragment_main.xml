@@ -9,6 +9,7 @@
     tools:context="com.example.sekoia.app.MainActivity$PlaceholderFragment">
 
     <TextView
+        android:text="@string/relativesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
