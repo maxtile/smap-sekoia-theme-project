@@ -58,7 +58,7 @@
         </activity>
 
 
-        <service android:name="com.example.sekoia.app.Service.GetRelativesService" >
+        <service android:name="com.example.sekoia.app.services.GetRelativesService" >
         </service>
     </application>
 
