@@ -16,8 +16,9 @@ import android.widget.GridView;
  */
 public class PicturesFragment extends Fragment {
     private OnPicturesFragmentInteraction aCallback;
-    private Button addPictureButton;
+    private Button addPictureButton, deletePictureButton;
     private GridView imageGridView;
+
 
     public PicturesFragment() {
     }
@@ -44,6 +45,13 @@ public class PicturesFragment extends Fragment {
         imageGridView.setAdapter(PicturesActivity.adapter);
 
         addPictureButton = (Button)rootView.findViewById(R.id.AddPictureButton);
+        deletePictureButton = (Button)rootView.findViewById(R.id.DeletePictureButton);
+        deletePictureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                aCallback.onDeletePictureButtonClicked();
+            }
+        });
         addPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,5 +85,6 @@ public class PicturesFragment extends Fragment {
     public interface OnPicturesFragmentInteraction{
         public void onTakePictureButtonClicked();
         public void onChoosePictureButtonClicked();
+        public void onDeletePictureButtonClicked();
     }
 }
