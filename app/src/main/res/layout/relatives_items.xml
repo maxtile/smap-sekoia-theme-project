@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/selector"
     android:dividerHeight="15dp"
-
-
     tools:context="com.example.sekoia.app.RelativesChooseActivity" >
 
 
@@ -15,7 +13,7 @@
     <ImageView
         android:id="@+id/item_icon"
         android:layout_width="70dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:maxHeight="100dp"
@@ -59,10 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_icon"
         android:layout_alignLeft="@+id/item_txtName"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="3dp"
         android:textColor="@color/fontColor"
         android:text="Nursering home" />
-
-
 
 </RelativeLayout>

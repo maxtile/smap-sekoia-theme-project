@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.sekoia.app.dummy.RelativeModel;
+import com.example.sekoia.app.models.RelativeModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +30,9 @@ public class RelativesChooseActivity extends Activity {
     // Logcat TAG
     public static final String TAG = "SEKOIA_APP_RelativesChooseActivity";
 
+    private List<RelativeModel> model = new ArrayList<RelativeModel>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class RelativesChooseActivity extends Activity {
         registerClickCallback();
         }
 
-    private List<RelativeModel> model = new ArrayList<RelativeModel>();
+
 
     private void populateRelativesList(){
         model.add(new RelativeModel(111, "Kalle", "Hansen",R.drawable.kalle, "Grenen", "Lejlighed 3"));
@@ -54,8 +57,6 @@ public class RelativesChooseActivity extends Activity {
         ListView list = (ListView) findViewById(R.id.relativesListView);
         list.setAdapter(adapter);
     }
-
-
 
 
     private void registerClickCallback(){
@@ -71,7 +72,6 @@ public class RelativesChooseActivity extends Activity {
                 startMenuActivity(relativemodel);
             }
         });
-
     }
 
 
@@ -80,8 +80,6 @@ public class RelativesChooseActivity extends Activity {
         //TODO when merged: remove toast
         String message = "You chose: " + relativeModel.getFirstName()+" ID: "+relativeModel.getId();
         Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
-
-
 
         //Intent to start the RelativesMenuActivity
         Intent intent = new Intent(this, RelativesMenuActivity.class);
@@ -92,7 +90,6 @@ public class RelativesChooseActivity extends Activity {
 
         Log.d(TAG, "Intent send: start activity: RelativesMenuActivity");
     }
-
 
 
     public class MyListAdapter extends ArrayAdapter<RelativeModel>{
@@ -132,12 +129,6 @@ public class RelativesChooseActivity extends Activity {
 
 
     }
-
-
-
-
-
-
 
 
     }

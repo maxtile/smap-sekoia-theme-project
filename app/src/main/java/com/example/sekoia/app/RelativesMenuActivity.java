@@ -2,23 +2,26 @@ package com.example.sekoia.app;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.sekoia.app.models.ActivityModel;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RelativesMenuActivity extends Activity {
 
     // KEYS used for intent
     public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE_ID";
-    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE_NAME";
+    public final static String MESSAGE_NAME = "com.example.sekoia.app.MESSAGE_NAME";
     public final static String MESSAGE_PIC = "com.example.sekoia.app.MESSAGE_PIC";
 
     // logcat tag:
@@ -28,6 +31,9 @@ public class RelativesMenuActivity extends Activity {
     String relativeId = "";   // used for intent to start pictureActivity
     int picPath = 0;
 
+    private List<ActivityModel> activityList = new ArrayList<ActivityModel>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,105 +41,99 @@ public class RelativesMenuActivity extends Activity {
         Log.d(TAG, "onCreate");
 
         // get data from intent:
-
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             relativeName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_NAME);
             relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
             picPath = intent.getIntExtra(RelativesChooseActivity.MESSAGE_PIC, 0);
 
-            Log.d(TAG, "Intent recieved: NAME:"+relativeName+" ID: "+relativeId+"");
-
-            //TODO when merged: comment out this toast:
-            String message = "From previous activity: "+ relativeName+", id: "+relativeId;
-            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Intent recieved: NAME:" + relativeName + " ID: " + relativeId + "");
         }
 
         // populate view with name of relative and small image:
         TextView textViev = (TextView) findViewById(R.id.txt_menu_relative);
         textViev.setText(relativeName);
-        ImageView imageView = (ImageView)findViewById(R.id.item_imageView_relative);
+        ImageView imageView = (ImageView) findViewById(R.id.item_imageView_relative);
         imageView.setImageResource(picPath);
 
-        //------- onClickListeners-------//
+        // populate listview
+        populateActivityList();
+        populateActivityListview();
+        registerClickCallback2();
+    }
+
+    private void populateActivityList(){
+        activityList.add(new ActivityModel(getString(R.string.textView_menu_pictures), R.drawable.icon_pictures));
+        activityList.add(new ActivityModel(getString(R.string.textView_menu_calender),R.drawable.icon_calender));
+        activityList.add(new ActivityModel(getString(+R.string.textView_menu_games),R.drawable.icon_games));
+    }
+
+    private void populateActivityListview(){
+        Log.d(TAG, "populateListview");
+        ArrayAdapter<ActivityModel> adapter = new MyListAdapter();
+        ListView list = (ListView) findViewById(R.id.activityListView);
+        list.setAdapter(adapter);
+    }
 
 
+    private void registerClickCallback2(){
+        ListView listview = (ListView) findViewById(R.id.activityListView);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        RelativeLayout rlayoutPictures = (RelativeLayout)findViewById(R.id.relativeLayoutPictures);
-        rlayoutPictures.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Log.d(TAG, "onClick_Pictures");
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 
-                //TODO - When merged: Toast has to be commented out
-                String message = getString(R.string.menuActivity_message_pictures);
-                Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onItemClick");
+                ActivityModel activityModel = activityList.get(position);
 
-                // TODO - When merged:
-                // Start pictures activity
+                // TODO - When merged: send intent, remove toast
 
+                // Start pictures activity:
                 /*
                 Intent intent = new Intent(this, RelativesMenuActivity.class);
                 intent.putExtra(MESSAGE_NAME, relativeName);
-                intent.putExtra( MESSAGE_ID, relativeId);
+                intent.putExtra(MESSAGE_ID, relativeId);
                 startActivity(intent);
                 */
 
-            }
-        });
-
-        RelativeLayout rlayoutCalender = (RelativeLayout)findViewById(R.id.relativeLayoutCalender);
-        rlayoutCalender.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Log.d(TAG, "onClick_Calender");
-
-                //Start activity - to be implemented
-                String message = getString(R.string.menuActivity_message_calender);
+                String message = "You choose: "+activityModel.getActivityName();
                 Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
-
             }
         });
-
-        RelativeLayout rlayoutGames = (RelativeLayout)findViewById(R.id.relativeLayoutGames);
-        rlayoutGames.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Log.d(TAG, "onClick_Games");
-
-                //Start activity - to be implemented
-                String message = getString(R.string.menuActivity_message_games);
-                Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-        //
-
-
-
-
     }
 
 
-    //TODO - delete the following unused methods:
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.relatives_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+
+
+    public class MyListAdapter extends ArrayAdapter<ActivityModel>{
+        public MyListAdapter(){
+            super(RelativesMenuActivity.this, R.layout.relatives_menu_items, activityList);
         }
-        return super.onOptionsItemSelected(item);
-    }
 
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Make sure we have a view to work with (may have been given null)
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.relatives_menu_items, parent, false);
+            }
+
+            // Find the relative to work with
+            ActivityModel activityModel = activityList.get(position);
+
+            // Activity - icon
+            ImageView imageView = (ImageView)itemView.findViewById(R.id.item_imageView_activity);
+            imageView.setImageResource(activityModel.getPicPath());
+
+            // Activity Name:
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_menu_activity);
+            nameText.setText(activityModel.getActivityName());
+
+            return itemView;
+        }
+
+
+    }
 }

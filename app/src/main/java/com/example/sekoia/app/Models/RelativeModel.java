@@ -1,4 +1,4 @@
-package com.example.sekoia.app.dummy;
+package com.example.sekoia.app.models;
 
 /**
  * Created by Rune on 27/05/14.
