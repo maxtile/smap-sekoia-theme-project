@@ -18,12 +18,19 @@
     <string name="textView_menu_calender">Calender</string>
     <string name="textView_menu_games">Games</string>
 
-
     <!-- for activity RelativesMenuActivity.java -->
     <string name="menuActivity_message_pictures">You choose pictures!</string>
     <string name="menuActivity_message_calender">You choose calender!</string>
     <string name="menuActivity_message_games">You choose games!</string>
     <string name="menuTextView">Please choose an activity!</string>
+    <string name="title_activity_empty">EmptyActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+
+
+    <!-- for activity EmptyActivity.java -->
+    <string name="emptyActivityTextView">This activity is not implemented!</string>
+
 
 
 </resources>

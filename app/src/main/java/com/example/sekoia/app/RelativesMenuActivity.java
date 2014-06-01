@@ -65,7 +65,7 @@ public class RelativesMenuActivity extends Activity {
     private void populateActivityList(){
         activityList.add(new ActivityModel(getString(R.string.textView_menu_pictures), R.drawable.icon_pictures));
         activityList.add(new ActivityModel(getString(R.string.textView_menu_calender),R.drawable.icon_calender));
-        activityList.add(new ActivityModel(getString(+R.string.textView_menu_games),R.drawable.icon_games));
+        activityList.add(new ActivityModel(getString(R.string.textView_menu_games),R.drawable.icon_games));
     }
 
     private void populateActivityListview(){
@@ -85,10 +85,17 @@ public class RelativesMenuActivity extends Activity {
 
                 Log.d(TAG, "onItemClick");
                 ActivityModel activityModel = activityList.get(position);
+                startActivity(activityModel);
 
-                // TODO - When merged: send intent, remove toast
+            }
+        });
+    }
 
-                // Start pictures activity:
+
+    private void startActivity(ActivityModel activityModel){
+        if(activityModel.getActivityName()==getString(R.string.textView_menu_pictures)){
+
+            // TODO: Start pictures activity:
                 /*
                 Intent intent = new Intent(this, RelativesMenuActivity.class);
                 intent.putExtra(MESSAGE_NAME, relativeName);
@@ -96,12 +103,24 @@ public class RelativesMenuActivity extends Activity {
                 startActivity(intent);
                 */
 
-                String message = "You choose: "+activityModel.getActivityName();
-                Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+            // TODO - When merged: send intent, remove toast
+            String message = "You choose: "+activityModel.getActivityName();
+            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
 
+        else{
+
+            Intent intent = new Intent(this, EmptyActivity.class);
+            intent.putExtra(MESSAGE_NAME, relativeName);
+            intent.putExtra(MESSAGE_ID, relativeId);
+            startActivity(intent);
+
+            // TODO - When merged: send intent, remove toast
+            String message = "You choose: "+activityModel.getActivityName();
+            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
 
