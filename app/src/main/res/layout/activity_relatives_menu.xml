@@ -2,134 +2,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="8dp"
+    android:background="@color/Background"
+    android:orientation="vertical"
     tools:context="com.example.sekoia.app.RelativesMenuActivity">
 
-    <View
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayoutChosenRelative"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="1dp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/Background"
         >
 
-        <TextView
-            android:id="@+id/menuTextView"
-            android:text="@string/menuTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/item_imageView_relative"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="100dp"
+            android:maxWidth="70dp"
+            android:src="@drawable/icon_pictures"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_alignTop="@+id/txt_menu_relative" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-
-
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/txt_menu_relative"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="1dp"
-            android:orientation="horizontal"
-            android:background="#C5E0B4">
+            android:textColor="@color/fontColor"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Name"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70dp" />
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/item_icon"
-                android:layout_width="70dp"
-                android:layout_height="100dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:maxHeight="100dp"
-                android:maxWidth="80dp"
-                android:src="@drawable/ic_launcher"
-                android:layout_marginTop="44dp"
-                android:layout_marginLeft="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/item_txtApartment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/item_icon"
-                android:layout_alignParentRight="true"
-                android:text="Apartment"
-                android:layout_alignLeft="@+id/item_txtName"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </RelativeLayout>
+    <ListView
+        android:id="@+id/activityListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtMake"
+        android:layout_below="@+id/txtMake"
+        android:layout_margin="20dp"
+        android:dividerHeight="20dp"
+        >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="1dp"
-            android:orientation="vertical"
-            android:background="#C5E0B4">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_games"
-                android:text="@string/Button_menu_games"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:onClick="onButtonGames"
-                android:gravity="center_horizontal"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="1dp"
-            android:orientation="vertical"
-            android:background="#C5E0B4">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_calender"
-                android:text="@string/Button_menu_calender"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:onClick="onButtonCalender"
-                android:gravity="center"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        </LinearLayout>
-
-    <View
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
+    </ListView>
 </LinearLayout>

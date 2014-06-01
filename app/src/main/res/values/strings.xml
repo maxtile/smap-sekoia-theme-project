@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- General -->
     <string name="app_name">Sekoia</string>
-    <string name="relativesTextView">Please choose a relative!</string>
-    <string name="menuTextView">Please choose an activity!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_relatives">RelativesActivity</string>
+    <string name="title_activity_relatives">Relatives</string>
+    <string name="title_activity_relatives_menu">Activity</string>
     <string name="startButton">Start</string>
-    <string name="title_activity_relatives_menu">RelativesMenuActivity</string>
+
+    <!-- for layout activity_relatives -->
+    <string name="relativesTextView">Please choose a relative!</string>
     <string name="name">Name_english</string>
-    <string name="homeName">hameName</string>
-    <string name="Button_menu_pictures">Pictures</string>
-    <string name="Button_menu_calender">Calender</string>
-    <string name="Button_menu_games">Games</string>
-    Button_menu_games
+    <string name="homeName">homeName</string>
+
+    <!-- for layout activity_relatives_menu -->
+    <string name="textView_menu_pictures">Pictures</string>
+    <string name="textView_menu_calender">Calender</string>
+    <string name="textView_menu_games">Games</string>
+
+
+    <!-- for activity RelativesMenuActivity.java -->
+    <string name="menuActivity_message_pictures">You choose pictures!</string>
+    <string name="menuActivity_message_calender">You choose calender!</string>
+    <string name="menuActivity_message_games">You choose games!</string>
+    <string name="menuTextView">Please choose an activity!</string>
+
 
 </resources>

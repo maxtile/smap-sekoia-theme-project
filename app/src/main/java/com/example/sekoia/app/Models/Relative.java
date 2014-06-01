@@ -1,9 +1,9 @@
-package com.example.sekoia.app.dummy;
+package com.example.sekoia.app.models;
 
 /**
  * Created by Rune on 27/05/14.
  */
-public class RelativeModel {
+public class Relative {
 
     int id;
     int picPath;
@@ -12,7 +12,7 @@ public class RelativeModel {
     String room;
     String homeName;
 
-    public RelativeModel(int id, String firstName, String lastName, int picPath,String homeName, String room){
+    public Relative(int id, String firstName, String lastName, int picPath, String homeName, String room){
         super();
         this.id = id;
         this.firstName = firstName;

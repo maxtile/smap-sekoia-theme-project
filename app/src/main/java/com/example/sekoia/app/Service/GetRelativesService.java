@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.example.sekoia.app.dummy.RelativeModel;
+import com.example.sekoia.app.models.Relative;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,7 +33,7 @@ public class GetRelativesService extends Service {
     public static final int RESULT_OK = 94215;
     public static final int RESULT_FAILED = 2366316;
 
-    private List<RelativeModel> mList;
+    private List<Relative> mList;
     private final IBinder mBinder = new IProtocolBinder();
 
     @Override
@@ -51,7 +51,7 @@ public class GetRelativesService extends Service {
         new DownloadTask().execute();
     }
 
-    public List<RelativeModel> getData() {
+    public List<Relative> getData() {
         return mList;
     }
 
@@ -61,19 +61,19 @@ public class GetRelativesService extends Service {
         sendBroadcast(intent);
     }
 
-    private class DownloadTask extends AsyncTask<Void, Integer, List<RelativeModel>> {
+    private class DownloadTask extends AsyncTask<Void, Integer, List<Relative>> {
 
         @Override
-        protected List<RelativeModel> doInBackground(Void... args) {
+        protected List<Relative> doInBackground(Void... args) {
             String json = getJSONRaw();
             if(json == null) return null;
             Gson gson = new Gson();
-            Type listType = new TypeToken<List<RelativeModel>>() {}.getType();
-            List<RelativeModel> results = gson.fromJson(json, listType);
+            Type listType = new TypeToken<List<Relative>>() {}.getType();
+            List<Relative> results = gson.fromJson(json, listType);
             return results;
         }
 
-        protected void onPostExecute(List<RelativeModel> result) {
+        protected void onPostExecute(List<Relative> result) {
             if(result == null) {
                 notifyDownloadDone(RESULT_FAILED);
             }else{

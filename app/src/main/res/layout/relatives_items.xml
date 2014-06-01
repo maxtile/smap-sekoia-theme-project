@@ -3,19 +3,23 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/selector"
+    android:dividerHeight="15dp"
     tools:context="com.example.sekoia.app.RelativesChooseActivity" >
+
+
+    <!-- text color:   6C6C6C   -->
 
     <ImageView
         android:id="@+id/item_icon"
         android:layout_width="70dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:maxHeight="100dp"
         android:maxWidth="80dp"
         android:src="@drawable/ic_launcher"
-        android:layout_marginTop="44dp"
-        android:layout_marginLeft="40dp"
+        android:layout_margin="15dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -30,7 +34,8 @@
         android:layout_above="@+id/item_txtApartment"
         android:text="@string/name"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="125dp"
+        android:layout_marginLeft="110dp"
+        android:textColor="@color/fontColor"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
@@ -43,6 +48,7 @@
         android:layout_alignParentRight="true"
         android:text="Apartment"
         android:layout_alignLeft="@+id/item_txtName"
+        android:textColor="@color/fontColor"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -51,10 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_icon"
         android:layout_alignLeft="@+id/item_txtName"
-        android:layout_marginBottom="15dp"
-
+        android:layout_marginBottom="3dp"
+        android:textColor="@color/fontColor"
         android:text="Nursering home" />
-
-
 
 </RelativeLayout>

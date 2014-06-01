@@ -1,7 +1,6 @@
 package com.example.sekoia.app;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,7 +8,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,26 +21,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sekoia.app.Service.GetRelativesService;
-import com.example.sekoia.app.dummy.RelativeModel;
+
+import com.example.sekoia.app.models.Relative;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class RelativesChooseActivity extends Activity {
 
-    // Message used for intent
-    public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE";
-    public final static String MESSAGE_FULLNAME = "com.example.sekoia.app.MESSAGE";
+    // KEYS used for intent
+    public final static String MESSAGE_ID = "com.example.sekoia.app.MESSAGE_ID";
+    public final static String MESSAGE_NAME = "com.example.sekoia.app.MESSAGE_NAME";
+    public final static String MESSAGE_PIC = "com.example.sekoia.app.MESSAGE_PIC";
+
+
+    // Logcat TAG
+    public static final String TAG = "SEKOIA_APP_RelativesChooseActivity";
 
     GetRelativesService mService;
     boolean mBound = false;
-    private List<RelativeModel> model = new ArrayList<RelativeModel>();
-    ArrayAdapter<RelativeModel> mAdapter;
+    private List<Relative> model = new ArrayList<Relative>();
+    ArrayAdapter<Relative> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatives);
+        Log.d(TAG, "onCreate");
 
         //mAdapter = new ArrayAdapter<String>(this, android.R.layout.activity_relatives, model);
         //setListAdapter(mAdapter);
@@ -48,6 +57,7 @@ public class RelativesChooseActivity extends Activity {
         populatListview();
         registerClickCallback();
         }
+
 
    // private void populateRelativesList(){
    //     model.add(new RelativeModel(111, "Kalle", "Hansen",R.drawable.kalle, "Grenen", "Lejlighed 3"));
@@ -58,8 +68,10 @@ public class RelativesChooseActivity extends Activity {
     //    model.add(new RelativeModel(222, "Nancy", "Berggren", R.drawable.nancy, "Kvisten", "Lejlighed 14"));
     //}
 
-    public void populatListview(){
-        ArrayAdapter<RelativeModel> adapter = new MyListAdapter();
+
+    private void populatListview(){
+        Log.d(TAG, "populateListview");
+        ArrayAdapter<Relative> adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.relativesListView);
         list.setAdapter(adapter);
     }
@@ -70,30 +82,32 @@ public class RelativesChooseActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 
-                RelativeModel relativemodel = model.get(position);
+                Log.d(TAG, "onItemClick");
+                Relative relativemodel = model.get(position);
 
                 // fire intent to start new activity
                 startMenuActivity(relativemodel);
             }
         });
-
     }
 
-    private void startMenuActivity(RelativeModel relativeModel){
+    private void startMenuActivity(Relative relative){
 
-        //toast
-        String message = "You chose: " + relativeModel.getFirstName()+" ID: "+relativeModel.getId();
+        //TODO when merged: remove toast
+        String message = "You chose: " + relative.getFirstName()+" ID: "+ relative.getId();
         Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
 
         //Intent to start the RelativesMenuActivity
         Intent intent = new Intent(this, RelativesMenuActivity.class);
-        //intent.putExtra(MESSAGE_ID,""+relativeModel.getId());
-        //intent.putExtra(MESSAGE_FULLNAME,relativeModel.getFirstName()+" "+relativeModel.getLastName());
+        intent.putExtra(MESSAGE_ID,""+ relative.getId());
+        intent.putExtra(MESSAGE_NAME, relative.getFirstName());
+        intent.putExtra(MESSAGE_PIC, relative.getPicPath());
         startActivity(intent);
 
+        Log.d(TAG, "Intent send: start activity: RelativesMenuActivity");
     }
 
-    public class MyListAdapter extends ArrayAdapter<RelativeModel>{
+    public class MyListAdapter extends ArrayAdapter<Relative>{
         public MyListAdapter(){
             super(RelativesChooseActivity.this, R.layout.relatives_items, model);
         }
@@ -107,23 +121,23 @@ public class RelativesChooseActivity extends Activity {
             }
 
             // Find the relative to work with
-            RelativeModel relativeModel = model.get(position);
+            Relative relative = model.get(position);
 
             // Image
             ImageView imageView = (ImageView)itemView.findViewById(R.id.item_icon);
-            imageView.setImageResource(relativeModel.getPicPath());
+            imageView.setImageResource(relative.getPicPath());
 
             // Full Name:
             TextView nameText = (TextView) itemView.findViewById(R.id.item_txtName);
-            nameText.setText(relativeModel.getFirstName()+" "+ relativeModel.getLastName());
+            nameText.setText(relative.getFirstName()+" "+ relative.getLastName());
 
             // Nursery home:
             TextView homeText = (TextView) itemView.findViewById(R.id.item_txtHome);
-            homeText.setText("" + relativeModel.getHomeName());
+            homeText.setText("" + relative.getHomeName());
 
             // Apartment:
             TextView apartmentText = (TextView) itemView.findViewById(R.id.item_txtApartment);
-            apartmentText.setText(relativeModel.getRoom());
+            apartmentText.setText(relative.getRoom());
 
             return itemView;
         }
@@ -221,6 +235,8 @@ public class RelativesChooseActivity extends Activity {
 
 
 }
+
+
 
 
 
