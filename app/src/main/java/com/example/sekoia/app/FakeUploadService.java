@@ -12,6 +12,8 @@ import java.io.File;
 
 public class FakeUploadService extends Service {
 
+    private Handler handler = new Handler();
+
     public FakeUploadService() {
     }
 
@@ -32,13 +34,18 @@ public class FakeUploadService extends Service {
     private void uploadFile(String fullFilePath){
         File imageFile = new File(fullFilePath);
         Log.d(this.toString(), "Uploading: " + imageFile.getAbsolutePath() + "");
-        Log.d(this.toString(), "sleep....");
         SystemClock.sleep(5000);
-        Log.d(this.toString(), "awaaaaake...");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), getString(R.string.UploadFinished),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void runOnUiThread(Runnable runnable){
-        new Handler().post(runnable);
+        handler.post(runnable);
     }
 
     class MyRunnable implements Runnable{
@@ -53,7 +60,7 @@ public class FakeUploadService extends Service {
                 @Override
                 public void run() {
                     Toast.makeText(getApplicationContext(), getString(R.string.pictureUpload),
-                            Toast.LENGTH_LONG);
+                            Toast.LENGTH_SHORT).show(); //todo: Lav sådan at der står hvem man uploader til.
                 }
             });
             uploadFile(data);

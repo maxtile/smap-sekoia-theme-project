@@ -45,6 +45,7 @@ import java.util.List;
             imageView.setImageBitmap(bitmaps.get(position));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             //imageView.setLayoutParams(new GridView.LayoutParams(400, 400));
+            // todo: We could add some MaxSize for the grid fields here...
             return imageView;
         }
 

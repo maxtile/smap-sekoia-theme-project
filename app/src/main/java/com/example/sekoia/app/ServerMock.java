@@ -1,6 +1,6 @@
 package com.example.sekoia.app;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,11 +16,16 @@ import java.util.List;
 /**
  * Created by Maxi on 29-05-14.
  */
-public class ServerMock extends Activity implements IServerInteraction {
+public class ServerMock implements IServerInteraction {
     //As this is a Mock the Server URL is set to Local Media storage
     private String URL = ""; //Todo - exteralFilesDir must be inserted i think.
     public final static String IMAGE_FILE_PATH_TAG = "ifp";
+    private Context context;
 
+    public ServerMock (Context context){
+        this.context = context.getApplicationContext();
+        URL = context.getExternalFilesDir(null).getAbsolutePath();
+    }
 
     @Override
     public List<Bitmap> GetPictureThumbnails(List<String> filenames) {
@@ -49,9 +54,9 @@ public class ServerMock extends Activity implements IServerInteraction {
     public int UploadImage(String fullFilePath) {
         try{
             Log.d(this.toString(), "Starting upload service");
-            Intent serviceIntent = new Intent(getApplicationContext(), FakeUploadService.class);
+            Intent serviceIntent = new Intent(context, FakeUploadService.class);
             serviceIntent.putExtra(IMAGE_FILE_PATH_TAG, fullFilePath);
-            startService(serviceIntent);
+            context.startService(serviceIntent);
         }catch (Exception e){
             Log.e(this.toString(), "Error while trying to start upload service");
             e.printStackTrace();

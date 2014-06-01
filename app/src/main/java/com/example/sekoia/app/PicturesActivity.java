@@ -45,7 +45,6 @@ public class PicturesActivity extends FragmentActivity
 
     public PicturesActivity(){
         //Default constructor
-        serverInteraction = new ServerMock();
     }
 
     @Override
@@ -107,6 +106,7 @@ public class PicturesActivity extends FragmentActivity
             mCurrentPhotoPath = savedInstanceState.getString(SAVE_CURRENT_PHOTO_PATH, null);
             }
         }
+        this.serverInteraction = new ServerMock(this);
     }
 
     @Override
