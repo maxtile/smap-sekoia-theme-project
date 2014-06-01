@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_activity_pictures">PicturesActivity</string>
+    <string name="PictureProcessError">Error while processing picture</string>
+    <string name="AddPictureButtonText">Add</string>
+    <string name="DeletePictureButton">Delete</string>
+    <string name="Pictures">Pictures</string>
+    <string name="fromCamera">Use camera</string>
+    <string name="fromGallery">Choose from gallery</string>
+    <string name="dialogChoose">Choose</string>
+    <string name="pictureUpload">Uploading picture to </string>
+    <string name="UploadFinished">Picture has been uploadet to: </string>
 
     <!-- General -->
     <string name="app_name">Sekoia</string>
@@ -30,7 +40,5 @@
 
     <!-- for activity EmptyActivity.java -->
     <string name="emptyActivityTextView">This activity is not implemented!</string>
-
-
-
+    <string name="emptyActivityLabel">Feature not implemented yet</string>
 </resources>
