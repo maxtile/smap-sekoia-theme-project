@@ -152,7 +152,13 @@ public class PicturesActivity extends FragmentActivity
 
     @Override
     public void onDeletePictureButtonClicked() {
+        dispatchDeletePictureButton();
+    }
 
+    private void dispatchDeletePictureButton() {
+        GridView gridView = (GridView) findViewById(R.id.imageGridView);
+        selectedImages.add(gridView.getSelectedItem());
+        selectedImages.remove(gridView.getSelectedItem());
     }
 
     private void dispatchChoosePictureIntent() {
