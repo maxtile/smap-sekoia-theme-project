@@ -8,6 +8,7 @@ import android.media.ThumbnailUtils;
 import android.util.Log;
 
 import com.example.sekoia.app.interfaces.IServerInteraction;
+import com.example.sekoia.app.services.FakeUploadService;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -40,7 +40,7 @@
         </activity>
 
         <service
-            android:name=".FakeUploadService"
+            android:name=".services.FakeUploadService"
             android:enabled="true"
             android:exported="true" />
 
