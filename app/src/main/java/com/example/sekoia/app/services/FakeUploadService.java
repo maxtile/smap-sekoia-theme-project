@@ -1,4 +1,4 @@
-package com.example.sekoia.app;
+package com.example.sekoia.app.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.sekoia.app.R;
+import com.example.sekoia.app.ServerMock;
 
 import java.io.File;
 
