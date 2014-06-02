@@ -112,7 +112,8 @@ public class RelativesChooseActivity extends Activity {
 
             // Image
             ImageView imageView = (ImageView)itemView.findViewById(R.id.item_icon);
-            imageView.setImageResource(relative.getPicPath());
+            int resID = getResources().getIdentifier(relative.getPicPath() , "drawable", getPackageName());
+            imageView.setImageResource(resID);
 
             // Full Name:
             TextView nameText = (TextView) itemView.findViewById(R.id.item_txtName);

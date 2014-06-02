@@ -28,13 +28,13 @@ public class EmptyActivity extends Activity {
 
 
         // get data from intent:
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         if (intent != null) {
             relativeName = SekoiaApp.getContext().getCurrentRelative().getFirstName();
             relativeId = Integer.toString(SekoiaApp.getContext().getCurrentRelative().getId());
-            picPath = SekoiaApp.getContext().getCurrentRelative().getPicPath();
+            //picPath = SekoiaApp.getContext().getCurrentRelative().getPicPath();
             Log.d(TAG, "Intent recieved: NAME:" + relativeName + " ID: " + relativeId + "");
-        }
+        }*/
 
         // populate view with name of relative and small image:
         TextView textViev = (TextView) findViewById(R.id.txt_menu_relative);
