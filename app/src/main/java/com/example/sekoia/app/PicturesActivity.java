@@ -14,6 +14,8 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Adapter;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.sekoia.app.interfaces.IServerInteraction;
@@ -27,7 +29,7 @@ import java.util.List;
 
 public class PicturesActivity extends FragmentActivity
         implements PicturesFragment.OnPicturesFragmentInteraction{
-    private static List<Object> selectedImages;
+    //private static List<Object> selectedImages;
 
     static final int THUMBNAIL_SIZE = 400;
     static final String SAVE_CURRENT_PHOTO_PATH = "saveCuPhPa";
@@ -153,9 +155,14 @@ public class PicturesActivity extends FragmentActivity
     }
 
     private void dispatchDeletePictureButton() {
-        GridView gridView = (GridView) findViewById(R.id.imageGridView);
-        selectedImages.add(gridView.getSelectedItem());
-        selectedImages.remove(gridView.getSelectedItem());
+        /*GridView gridView = (GridView) findViewById(R.id.imageGridView);
+        if (adapter.getItem(gridView.getSelectedItemPosition()) != null )
+        {
+            Bitmaps.remove(adapter.getItem(gridView.getSelectedItemPosition()));
+        }
+        */
+        adapter.notifyDataSetChanged();
+
     }
 
     private void dispatchChoosePictureIntent() {
@@ -207,13 +214,5 @@ public class PicturesActivity extends FragmentActivity
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
-    }
-
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
     }
 }
