@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.sekoia.app.models.ActivityModel;
+import com.example.sekoia.app.models.SekoiaApp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +29,9 @@ public class RelativesMenuActivity extends Activity {
     // logcat tag:
     public static final String TAG = "SEKOIA_APP_RelativesMenuActivity";
 
-    String relativeName = "";
+    /*String relativeName = "";
     String relativeId = "";   // used for intent to start pictureActivity
-    int picPath = 0;
+    int picPath = 0;*/
 
     private List<ActivityModel> activityList = new ArrayList<ActivityModel>();
 
@@ -41,20 +43,25 @@ public class RelativesMenuActivity extends Activity {
         Log.d(TAG, "onCreate");
 
         // get data from intent:
-        Intent intent = getIntent();
+       /* Intent intent = getIntent();
         if (intent != null) {
             relativeName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_NAME);
             relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
-            picPath = intent.getIntExtra(RelativesChooseActivity.MESSAGE_PIC, 0);
+            picPath = intent.getIntExtra(RelativesChooseActivity.MESSAGE_PIC, 0);*/
 
-            Log.d(TAG, "Intent recieved: NAME:" + relativeName + " ID: " + relativeId + "");
-        }
+            //Log.d(TAG, "Intent recieved: NAME:" + relativeName + " ID: " + relativeId + "");
+        //}
 
         // populate view with name of relative and small image:
         TextView textViev = (TextView) findViewById(R.id.txt_menu_relative);
-        textViev.setText(relativeName);
+        textViev.setText(SekoiaApp.getContext().getCurrentRelative().getFirstName());
         ImageView imageView = (ImageView) findViewById(R.id.item_imageView_relative);
-        imageView.setImageResource(picPath);
+
+        String picture = SekoiaApp.getContext().getCurrentRelative().getPicPath();
+        int resID = getResources().getIdentifier(picture , "drawable", getPackageName());
+        imageView.setImageResource(resID);
+
+
 
         // populate listview
         populateActivityList();
@@ -107,20 +114,12 @@ public class RelativesMenuActivity extends Activity {
         else{
 
             Intent intent = new Intent(this, EmptyActivity.class);
-            intent.putExtra(MESSAGE_NAME, relativeName);
-            intent.putExtra(MESSAGE_ID, relativeId);
+            //intent.putExtra(MESSAGE_NAME, relativeName);
+            //intent.putExtra(MESSAGE_ID, relativeId);
             startActivity(intent);
-
-            // TODO - When merged: send intent, remove toast
-            String message = "You choose: "+activityModel.getActivityName();
-            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
         }
 
     }
-
-
-
-
 
     public class MyListAdapter extends ArrayAdapter<ActivityModel>{
         public MyListAdapter(){
