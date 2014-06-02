@@ -6,13 +6,13 @@ package com.example.sekoia.app.models;
 public class Relative {
 
     int id;
-    int picPath;
+    String picPath;
     String firstName;
     String lastName;
     String room;
     String homeName;
 
-    public Relative(int id, String firstName, String lastName, int picPath, String homeName, String room){
+    public Relative(int id, String firstName, String lastName, String picPath, String homeName, String room){
         super();
         this.id = id;
         this.firstName = firstName;
@@ -29,7 +29,7 @@ public class Relative {
     public String getLastName(){
         return lastName;
     }
-    public int getPicPath(){
+    public String getPicPath(){
         return picPath;
     }
     public String getHomeName(){
