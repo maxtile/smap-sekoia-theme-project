@@ -7,6 +7,8 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.sekoia.app.models.SekoiaApp;
+
 
 public class EmptyActivity extends Activity {
 
@@ -28,10 +30,9 @@ public class EmptyActivity extends Activity {
         // get data from intent:
         Intent intent = getIntent();
         if (intent != null) {
-            relativeName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_NAME);
-            relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
-            picPath = intent.getIntExtra(RelativesChooseActivity.MESSAGE_PIC, 0);
-
+            relativeName = SekoiaApp.getContext().getCurrentRelative().getFirstName();
+            relativeId = Integer.toString(SekoiaApp.getContext().getCurrentRelative().getId());
+            picPath = SekoiaApp.getContext().getCurrentRelative().getPicPath();
             Log.d(TAG, "Intent recieved: NAME:" + relativeName + " ID: " + relativeId + "");
         }
 

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +19,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sekoia.app.services.GetRelativesService;
-
 import com.example.sekoia.app.models.Relative;
+import com.example.sekoia.app.models.SekoiaApp;
+import com.example.sekoia.app.services.GetRelativesService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,16 +58,6 @@ public class RelativesChooseActivity extends Activity {
         }
 
 
-   // private void populateRelativesList(){
-   //     model.add(new RelativeModel(111, "Kalle", "Hansen",R.drawable.kalle, "Grenen", "Lejlighed 3"));
-   // }
-
-    //private void populateRelativesList(){
-    //    model.add(new RelativeModel(111, "Kalle", "Hansen",R.drawable.kalle, "Grenen", "Lejlighed 3"));
-    //    model.add(new RelativeModel(222, "Nancy", "Berggren", R.drawable.nancy, "Kvisten", "Lejlighed 14"));
-    //}
-
-
     private void populatListview(){
         Log.d(TAG, "populateListview");
         ArrayAdapter<Relative> adapter = new MyListAdapter();
@@ -93,15 +82,13 @@ public class RelativesChooseActivity extends Activity {
 
     private void startMenuActivity(Relative relative){
 
+        SekoiaApp.getContext().setCurrentRelative(relative);
         //TODO when merged: remove toast
         String message = "You chose: " + relative.getFirstName()+" ID: "+ relative.getId();
         Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
 
         //Intent to start the RelativesMenuActivity
         Intent intent = new Intent(this, RelativesMenuActivity.class);
-        intent.putExtra(MESSAGE_ID,""+ relative.getId());
-        intent.putExtra(MESSAGE_NAME, relative.getFirstName());
-        intent.putExtra(MESSAGE_PIC, relative.getPicPath());
         startActivity(intent);
 
         Log.d(TAG, "Intent send: start activity: RelativesMenuActivity");
