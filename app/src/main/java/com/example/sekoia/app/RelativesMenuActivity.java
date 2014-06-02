@@ -117,17 +117,9 @@ public class RelativesMenuActivity extends Activity {
             //intent.putExtra(MESSAGE_NAME, relativeName);
             //intent.putExtra(MESSAGE_ID, relativeId);
             startActivity(intent);
-
-            // TODO - When merged: send intent, remove toast
-            String message = "You choose: "+activityModel.getActivityName();
-            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
         }
 
     }
-
-
-
-
 
     public class MyListAdapter extends ArrayAdapter<ActivityModel>{
         public MyListAdapter(){

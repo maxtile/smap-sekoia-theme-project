@@ -83,9 +83,6 @@ public class RelativesChooseActivity extends Activity {
     private void startMenuActivity(Relative relative){
 
         SekoiaApp.getContext().setCurrentRelative(relative);
-        //TODO when merged: remove toast
-        String message = "You chose: " + relative.getFirstName()+" ID: "+ relative.getId();
-        Toast.makeText(RelativesChooseActivity.this, message, Toast.LENGTH_SHORT).show();
 
         //Intent to start the RelativesMenuActivity
         Intent intent = new Intent(this, RelativesMenuActivity.class);
