@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.sekoia.app.models.ActivityModel;
 import com.example.sekoia.app.models.SekoiaApp;
 
@@ -29,28 +28,13 @@ public class RelativesMenuActivity extends Activity {
     // logcat tag:
     public static final String TAG = "SEKOIA_APP_RelativesMenuActivity";
 
-    /*String relativeName = "";
-    String relativeId = "";   // used for intent to start pictureActivity
-    int picPath = 0;*/
-
     private List<ActivityModel> activityList = new ArrayList<ActivityModel>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatives_menu);
         Log.d(TAG, "onCreate");
-
-        // get data from intent:
-       /* Intent intent = getIntent();
-        if (intent != null) {
-            relativeName = intent.getStringExtra(RelativesChooseActivity.MESSAGE_NAME);
-            relativeId = intent.getStringExtra(RelativesChooseActivity.MESSAGE_ID);
-            picPath = intent.getIntExtra(RelativesChooseActivity.MESSAGE_PIC, 0);*/
-
-            //Log.d(TAG, "Intent recieved: NAME:" + relativeName + " ID: " + relativeId + "");
-        //}
 
         // populate view with name of relative and small image:
         TextView textViev = (TextView) findViewById(R.id.txt_menu_relative);
@@ -60,8 +44,6 @@ public class RelativesMenuActivity extends Activity {
         String picture = SekoiaApp.getContext().getCurrentRelative().getPicPath();
         int resID = getResources().getIdentifier(picture , "drawable", getPackageName());
         imageView.setImageResource(resID);
-
-
 
         // populate listview
         populateActivityList();
@@ -82,7 +64,6 @@ public class RelativesMenuActivity extends Activity {
         list.setAdapter(adapter);
     }
 
-
     private void registerClickCallback2(){
         ListView listview = (ListView) findViewById(R.id.activityListView);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,24 +79,13 @@ public class RelativesMenuActivity extends Activity {
         });
     }
 
-
     private void startActivity(ActivityModel activityModel){
         if(activityModel.getActivityName()==getString(R.string.textView_menu_pictures)){
-
-            // TODO: Start pictures activity:
-
                 Intent intent = new Intent(this, PicturesActivity.class);
-                //intent.putExtra(MESSAGE_NAME, relativeName);
-                //intent.putExtra(MESSAGE_ID, relativeId);
                 startActivity(intent);
-
         }
-
         else{
-
             Intent intent = new Intent(this, EmptyActivity.class);
-            //intent.putExtra(MESSAGE_NAME, relativeName);
-            //intent.putExtra(MESSAGE_ID, relativeId);
             startActivity(intent);
         }
 
@@ -147,7 +117,5 @@ public class RelativesMenuActivity extends Activity {
 
             return itemView;
         }
-
-
     }
 }
