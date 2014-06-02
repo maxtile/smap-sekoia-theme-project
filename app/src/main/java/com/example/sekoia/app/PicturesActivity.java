@@ -14,11 +14,9 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.Toast;
 
-import com.example.sekoia.app.Interfaces.IServerInteraction;
+import com.example.sekoia.app.interfaces.IServerInteraction;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class PicturesActivity extends FragmentActivity
         implements PicturesFragment.OnPicturesFragmentInteraction{

@@ -1,8 +1,7 @@
-package com.example.sekoia.app.Interfaces;
+package com.example.sekoia.app.interfaces;
 
 import android.graphics.Bitmap;
 
-import java.io.File;
 import java.util.List;
 
 /**

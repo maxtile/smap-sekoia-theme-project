@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.util.Log;
 
-import com.example.sekoia.app.Interfaces.IServerInteraction;
+import com.example.sekoia.app.interfaces.IServerInteraction;
 
 import java.io.File;
 import java.util.ArrayList;

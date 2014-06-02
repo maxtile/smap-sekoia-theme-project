@@ -96,16 +96,12 @@ public class RelativesMenuActivity extends Activity {
         if(activityModel.getActivityName()==getString(R.string.textView_menu_pictures)){
 
             // TODO: Start pictures activity:
-                /*
-                Intent intent = new Intent(this, RelativesMenuActivity.class);
-                intent.putExtra(MESSAGE_NAME, relativeName);
-                intent.putExtra(MESSAGE_ID, relativeId);
-                startActivity(intent);
-                */
 
-            // TODO - When merged: send intent, remove toast
-            String message = "You choose: "+activityModel.getActivityName();
-            Toast.makeText(RelativesMenuActivity.this, message, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, PicturesActivity.class);
+                //intent.putExtra(MESSAGE_NAME, relativeName);
+                //intent.putExtra(MESSAGE_ID, relativeId);
+                startActivity(intent);
+
         }
 
         else{

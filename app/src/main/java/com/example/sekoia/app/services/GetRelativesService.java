@@ -1,4 +1,4 @@
-package com.example.sekoia.app.Service;
+package com.example.sekoia.app.services;
 
 import android.app.Service;
 import android.content.Intent;
