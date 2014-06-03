@@ -3,11 +3,17 @@ package com.example.sekoia.app;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
@@ -43,6 +49,45 @@ public class PicturesFragment extends Fragment {
                 PicturesActivity.Bitmaps);
         imageGridView = (GridView)rootView.findViewById(R.id.imageGridView);
         imageGridView.setAdapter(PicturesActivity.adapter);
+        //imageGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+        //imageGridView.setOnTouchListener();
+        /*imageGridView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            @Override
+            public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
+
+            }
+
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                if (menuItem != null)
+                {
+                    aCallback.onGridViewItemClicked();
+                }
+                return true;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+
+            }
+        });*/
+
+        imageGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                aCallback.onGridViewItemClicked(i);
+            }
+        });
 
         addPictureButton = (Button)rootView.findViewById(R.id.AddPictureButton);
         deletePictureButton = (Button)rootView.findViewById(R.id.DeletePictureButton);
@@ -86,5 +131,6 @@ public class PicturesFragment extends Fragment {
         public void onTakePictureButtonClicked();
         public void onChoosePictureButtonClicked();
         public void onDeletePictureButtonClicked();
+        public void onGridViewItemClicked(int position);
     }
 }

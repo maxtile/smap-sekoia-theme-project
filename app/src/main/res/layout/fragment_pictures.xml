@@ -49,6 +49,7 @@
         android:horizontalSpacing="15dp"
         android:numColumns="auto_fit"
         android:smoothScrollbar="true"
-        android:listSelector="@drawable/gridviewitem_selector"/>
+        android:listSelector="@drawable/gridviewitem_selector"
+        android:clickable="true"/>
 
 </RelativeLayout>

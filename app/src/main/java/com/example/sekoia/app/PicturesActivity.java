@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.sekoia.app.interfaces.IServerInteraction;
@@ -152,15 +153,19 @@ public class PicturesActivity extends FragmentActivity
         dispatchDeletePictureButton();
     }
 
+    @Override
+    public void onGridViewItemClicked(int position) {
+        Bitmaps.remove(position);
+        adapter.notifyDataSetChanged();
+    }
+
     private void dispatchDeletePictureButton() {
-        /*GridView gridView = (GridView) findViewById(R.id.imageGridView);
+        GridView gridView = (GridView) findViewById(R.id.imageGridView);
         if (adapter.getItem(gridView.getSelectedItemPosition()) != null )
         {
             Bitmaps.remove(adapter.getItem(gridView.getSelectedItemPosition()));
         }
-        */
         adapter.notifyDataSetChanged();
-
     }
 
     private void dispatchChoosePictureIntent() {

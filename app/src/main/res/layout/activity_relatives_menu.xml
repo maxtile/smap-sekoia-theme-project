@@ -54,7 +54,7 @@
         android:layout_below="@+id/txtMake"
         android:layout_margin="20dp"
         android:dividerHeight="20dp"
-        >
+        android:background="@color/Background">
 
     </ListView>
 </LinearLayout>

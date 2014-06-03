@@ -7,7 +7,7 @@
     android:padding="1dp"
     android:orientation="horizontal"
     android:background="@drawable/selector"
-    tools:context="com.example.sekoia.app.RelativesMenuActivity" >
+    tools:context="com.example.sekoia.app.RelativesMenuActivity">
 
     <ImageView
         android:id="@+id/item_imageView_activity"
