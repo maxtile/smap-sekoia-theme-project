@@ -30,7 +30,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity
@@ -46,18 +45,20 @@
 
         <activity
             android:name=".RelativesChooseActivity"
-            android:label="@string/title_activity_relatives" >
+            android:label="@string/title_activity_relatives"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.example.sekoia.app.RelativesMenuActivity"
-            android:label="@string/title_activity_relatives_menu" >
+            android:label="@string/title_activity_relatives_menu"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".EmptyActivity"
-            android:label="@string/emptyActivityLabel">
+            android:label="@string/emptyActivityLabel"
+            android:screenOrientation="portrait">
         </activity>
-
 
         <service android:name="com.example.sekoia.app.services.GetRelativesService" >
         </service>

@@ -13,11 +13,11 @@
     <string name="app_name">Sekoia</string>
     <string name="action_settings">Indstillinger</string>
     <string name="title_activity_relatives">Pårørende</string>
-    <string name="title_activity_relatives_menu">Pårørende menu</string>
+    <string name="title_activity_relatives_menu">Aktiviteter</string>
     <string name="startButton">Start</string>
 
     <!-- for layout activity_relatives -->
-    <string name="relativesTextView">Vælg venligst en pårørende!</string>
+    <string name="relativesTextView">Vælg pårørende:</string>
     <string name="name">Name_english</string>
     <string name="homeName">homeName</string>
 
@@ -30,7 +30,7 @@
     <string name="menuActivity_message_pictures">Du har valgt "billeder"</string>
     <string name="menuActivity_message_calender">Du har valgt "kalender"</string>
     <string name="menuActivity_message_games">Du har valgt "spil"</string>
-    <string name="menuTextView">Vælg venligst en aktivitet!</string>
+    <string name="menuTextView">Vælg aktivitet:</string>
     <string name="title_activity_empty">Tom aktivitet</string>
 
     <!-- for activity EmptyActivity.java -->

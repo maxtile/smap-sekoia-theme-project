@@ -33,6 +33,9 @@
         android:layout_height="wrap_content"
         android:text="@string/startButton"
         android:layout_marginTop="40dp"
+        android:height="50dp"
+        android:minWidth="100dp"
+        android:maxWidth="200dp"
         android:id="@+id/button"
         android:onClick="onButtonStart"
         android:layout_gravity="center_horizontal|bottom" />

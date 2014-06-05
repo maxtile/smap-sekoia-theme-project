@@ -45,7 +45,6 @@
             android:layout_marginRight="70dp" />
     </RelativeLayout>
 
-
     <ListView
         android:id="@+id/activityListView"
         android:layout_width="match_parent"
@@ -55,6 +54,5 @@
         android:layout_margin="20dp"
         android:dividerHeight="20dp"
         android:background="@color/Background">
-
     </ListView>
 </LinearLayout>
