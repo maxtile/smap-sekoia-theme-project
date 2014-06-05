@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -146,32 +147,20 @@ public class PicturesActivity extends FragmentActivity
             e.printStackTrace();
         }
 
-        for (int i = 0; i < filenames.size(); i++){
-            // Check if files are in private storage
-            File f1 = new File(getExternalFilesDir(null) + "/" + filenames.get(i));
-            if (f1.isFile()){
-                Bitmap b = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(f1.getPath()),
-                        THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-                Bitmaps.add(b);
-                continue;
-            }
+        ArrayList<File> files = new ArrayList<File>();
+        listf(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath(), files);
+        listf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM).getAbsolutePath(), files);
 
-            // Check if files are in gallery
-            File f2 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DCIM) + "/Camera/" + filenames.get(i));
-            if (f2.isFile()){
-                Bitmap b = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(f2.getPath()),
-                        THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-                Bitmaps.add(b);
-                continue;
-            }
-
-            File f3 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), filenames.get(i));
-            if (f3.exists()){
-                Bitmap b = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(f3.getPath()),
-                        THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-                Bitmaps.add(b);
+        for(int index = 0; index < files.size(); index++){
+            for(int i = 0; i < filenames.size(); i++){
+                String filenameFromDb = filenames.get(i);
+                String filenameFromFiles = files.get(index).getName();
+                if (filenameFromDb.equals(filenameFromFiles)){
+                    Bitmap b = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(
+                            files.get(index).getPath()),THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+                    Bitmaps.add(b);
+                }
             }
         }
     }
@@ -277,5 +266,19 @@ public class PicturesActivity extends FragmentActivity
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
+    }
+
+    public void listf(String directoryName, ArrayList<File> files) {
+        File directory = new File(directoryName);
+
+        // get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isFile()) {
+                files.add(file);
+            } else if (file.isDirectory()) {
+                listf(file.getAbsolutePath(), files);
+            }
+        }
     }
 }
