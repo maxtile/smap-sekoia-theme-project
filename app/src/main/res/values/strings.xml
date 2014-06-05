@@ -10,6 +10,7 @@
     <string name="dialogChoose">Choose</string>
     <string name="pictureUpload">Uploading picture to </string>
     <string name="UploadFinished">Picture has been uploadet to: </string>
+    <string name="SelectPicturePlease">Please select a picture to delete</string>
 
     <!-- General -->
     <string name="app_name">Sekoia</string>
@@ -36,9 +37,8 @@
     <string name="title_activity_empty">EmptyActivity</string>
     <string name="hello_world">Hello world!</string>
 
-
-
     <!-- for activity EmptyActivity.java -->
     <string name="emptyActivityTextView">This activity is not implemented!</string>
     <string name="emptyActivityLabel">Feature not implemented yet</string>
+    <string name="NotImplementedMessage">Sorry!</string>
 </resources>

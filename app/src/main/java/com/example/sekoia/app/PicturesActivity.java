@@ -159,8 +159,14 @@ public class PicturesActivity extends FragmentActivity
     }
 
     private void dispatchDeletePictureButton() {
+        try{
         Bitmaps.remove(selectedImages);
         adapter.notifyDataSetChanged();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(), "@strings/SelectPicturePlease", Toast.LENGTH_LONG);
+        }
     }
 
     private void dispatchChoosePictureIntent() {
