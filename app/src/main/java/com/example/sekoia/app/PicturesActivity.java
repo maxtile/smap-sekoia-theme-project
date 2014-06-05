@@ -28,7 +28,7 @@ import java.util.List;
 
 public class PicturesActivity extends FragmentActivity
         implements PicturesFragment.OnPicturesFragmentInteraction{
-    //private static List<Object> selectedImages;
+    public int selectedImages;
 
     static final int THUMBNAIL_SIZE = 400;
     static final String SAVE_CURRENT_PHOTO_PATH = "saveCuPhPa";
@@ -155,16 +155,11 @@ public class PicturesActivity extends FragmentActivity
 
     @Override
     public void onGridViewItemClicked(int position) {
-        Bitmaps.remove(position);
-        adapter.notifyDataSetChanged();
+        selectedImages = position;
     }
 
     private void dispatchDeletePictureButton() {
-        GridView gridView = (GridView) findViewById(R.id.imageGridView);
-        if (adapter.getItem(gridView.getSelectedItemPosition()) != null )
-        {
-            Bitmaps.remove(adapter.getItem(gridView.getSelectedItemPosition()));
-        }
+        Bitmaps.remove(selectedImages);
         adapter.notifyDataSetChanged();
     }
 
