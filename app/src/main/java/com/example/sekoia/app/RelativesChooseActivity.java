@@ -34,7 +34,6 @@ public class RelativesChooseActivity extends Activity {
     public final static String MESSAGE_NAME = "com.example.sekoia.app.MESSAGE_NAME";
     public final static String MESSAGE_PIC = "com.example.sekoia.app.MESSAGE_PIC";
 
-
     // Logcat TAG
     public static final String TAG = "SEKOIA_APP_RelativesChooseActivity";
 
@@ -49,10 +48,6 @@ public class RelativesChooseActivity extends Activity {
         setContentView(R.layout.activity_relatives);
         Log.d(TAG, "onCreate");
 
-        //mAdapter = new ArrayAdapter<String>(this, android.R.layout.activity_relatives, model);
-        //setListAdapter(mAdapter);
-
-        //populateRelativesList();
         populatListview();
         registerClickCallback();
         }
@@ -160,8 +155,6 @@ public class RelativesChooseActivity extends Activity {
         }
     }
 
-
-
     /** Defines callbacks for service binding, passed to bindService() */
     private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -191,10 +184,6 @@ public class RelativesChooseActivity extends Activity {
                     if(mBound) {
                         model = mService.getData();
                         populatListview();
-                        //model = getTitles(mService.getData());
-                        //mAdapter = new ArrayAdapter<RelativesChooseActivity>(RelativesChooseActivity.this, android.R.layout.activity_relatives, model);
-                        //RelativesChooseActivity.this.setListAdapter(mAdapter);
-
                     }
                 }else{
                     Toast.makeText(RelativesChooseActivity.this, "Error downloading", Toast.LENGTH_LONG).show();
@@ -202,33 +191,4 @@ public class RelativesChooseActivity extends Activity {
             }
         }
     };
-
-
-    /*private List<String> getTitles(List<RelativeModel> relatives) {
-        ArrayList<RelativeModel> result = new ArrayList<RelativeModel>();
-        for(RelativeModel s : relatives) {
-            //result.add(s.getLastName());
-            //model.add(s.getFirstName());
-
-            //result.add(s.getLastName());
-        }
-        return result;*/
-    //}
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

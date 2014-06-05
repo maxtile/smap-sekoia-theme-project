@@ -3,14 +3,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.sekoia.app.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/startButton"
-        android:id="@+id/button"
-        android:onClick="onButtonStart"
-        android:layout_gravity="center_horizontal|bottom" />
+
+
 </FrameLayout>
