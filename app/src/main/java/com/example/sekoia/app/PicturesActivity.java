@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Path;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -17,18 +19,25 @@ import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.sekoia.app.database.SekoiaDAO;
 import com.example.sekoia.app.interfaces.IServerInteraction;
+import com.example.sekoia.app.models.Relative;
+import com.example.sekoia.app.models.SekoiaApp;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.sekoia.app.models.SekoiaApp.*;
+
 public class PicturesActivity extends FragmentActivity
         implements PicturesFragment.OnPicturesFragmentInteraction{
     public int selectedImages;
+    private SekoiaDAO dao;
 
     static final int THUMBNAIL_SIZE = 400;
     static final String SAVE_CURRENT_PHOTO_PATH = "saveCuPhPa";
@@ -52,6 +61,7 @@ public class PicturesActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bitmap bitmapImage = null;
+        int currentRelativeId = getContext().getCurrentRelative().getId();
 
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             if(mCurrentPhotoPath == null){
@@ -80,6 +90,7 @@ public class PicturesActivity extends FragmentActivity
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             mCurrentPhotoPath = cursor.getString(columnIndex);
+            mCurrentPhotoFileName = Uri.parse(mCurrentPhotoPath).getLastPathSegment();
             cursor.close();
 
             bitmapImage = ThumbnailUtils.extractThumbnail(
@@ -87,8 +98,14 @@ public class PicturesActivity extends FragmentActivity
                     , THUMBNAIL_SIZE, THUMBNAIL_SIZE);
         }
 
-        //Todo: add the photoPath to the Realative on database
-        //Todo: add Background task where we upload real picture file.
+        try{
+            dao.open();
+            dao.insertPicture(mCurrentPhotoFileName, currentRelativeId);
+            dao.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
         serverInteraction.UploadImage(mCurrentPhotoPath);
         Bitmaps.add(bitmapImage);
         adapter.notifyDataSetChanged();
@@ -109,6 +126,45 @@ public class PicturesActivity extends FragmentActivity
             }
         }
         this.serverInteraction = new ServerMock(this);
+        this.dao = new SekoiaDAO(getContext());
+        loadImagesForCurrentRelative();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Bitmaps.clear();
+        loadImagesForCurrentRelative();
+        adapter.notifyDataSetChanged();
+    }
+
+    private void loadImagesForCurrentRelative() {
+        List<String> filenames = new ArrayList<String>();
+        try{
+            dao.open();
+            Relative relative = getContext().getCurrentRelative();
+            filenames = dao.getFilenames(relative.getId());
+            dao.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        ArrayList<File> files = new ArrayList<File>();
+        listf(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath(), files);
+        listf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM).getAbsolutePath(), files);
+
+        for(int index = 0; index < files.size(); index++){
+            for(int i = 0; i < filenames.size(); i++){
+                String filenameFromDb = filenames.get(i);
+                String filenameFromFiles = files.get(index).getName();
+                if (filenameFromDb.equals(filenameFromFiles)){
+                    Bitmap b = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(
+                            files.get(index).getPath()),THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+                    Bitmaps.add(b);
+                }
+            }
+        }
     }
 
     @Override
@@ -205,8 +261,7 @@ public class PicturesActivity extends FragmentActivity
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
+        File storageDir = getExternalFilesDir(null);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -214,9 +269,23 @@ public class PicturesActivity extends FragmentActivity
         );
 
         // Save name to for storage in database on current Relative.
-        mCurrentPhotoPath = image.getName();
+        mCurrentPhotoFileName = image.getName();
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
+    }
+
+    public void listf(String directoryName, ArrayList<File> files) {
+        File directory = new File(directoryName);
+
+        // get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isFile()) {
+                files.add(file);
+            } else if (file.isDirectory()) {
+                listf(file.getAbsolutePath(), files);
+            }
+        }
     }
 }
