@@ -14,9 +14,6 @@ public class SekoiaDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Sekoia.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_RELATIVE_TABLE = "relative";
-    private static final String DATABASE_PICTURE_TABLE = "picture";
-
     private static final String DATABASE_CREATE_RELATIVE_TABLE =
             "CREATE TABLE " + DATABASE_RELATIVE_TABLE + " (" + RELATIVE_KEY_ID +
             " integer primary key autoincrement, " +
@@ -26,7 +23,7 @@ public class SekoiaDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE_PICTURE_TABLE =
             "CREATE TABLE " + DATABASE_PICTURE_TABLE + " (" + PICTURE_KEY_ID +
                     " INTEGER primary key autoincrement, " +
-                    PICTURE_KEY_RELATIVE + " INTEGER not null" +
+                    PICTURE_KEY_RELATIVE + " INTEGER not null, " +
                     PICTURE_KEY_FILENAME + " TEXT not null);";
 
 

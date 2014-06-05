@@ -8,8 +8,8 @@
     <string name="fromCamera">Use camera</string>
     <string name="fromGallery">Choose from gallery</string>
     <string name="dialogChoose">Choose</string>
-    <string name="pictureUpload">Uploading picture to </string>
-    <string name="UploadFinished">Picture has been uploadet to: </string>
+    <!--<string name="pictureUpload">Uploading picture to </string>-->
+    <string name="UploadFinished">Picture is now online</string>
 
     <!-- General -->
     <string name="app_name">Sekoia</string>

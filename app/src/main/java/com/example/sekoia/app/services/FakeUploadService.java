@@ -59,13 +59,6 @@ public class FakeUploadService extends Service {
         }
         @Override
         public void run() {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.pictureUpload),
-                            Toast.LENGTH_SHORT).show(); //todo: Lav sådan at der står hvem man uploader til.
-                }
-            });
             uploadFile(data);
         }
     }
